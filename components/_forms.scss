@@ -106,6 +106,7 @@ $form-animation-speed: $global-animation-speed-fast;
   transition: box-shadow $form-animation-speed ease, border-color $form-animation-speed ease;
   outline: 0;
   -webkit-appearance: none;
+  will-change: transform;
 
   &:focus {
     border-color: $form-background;
@@ -142,6 +143,7 @@ $form-animation-speed: $global-animation-speed-fast;
   box-shadow: $form-shadow;
   transition: box-shadow $form-animation-speed ease, border-color $form-animation-speed ease;
   outline: 0;
+  will-change: transform;
 
   /**
    * 1. Padding between forward slashes in the date format
