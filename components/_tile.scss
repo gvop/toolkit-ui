@@ -108,6 +108,10 @@ $included-tile-themes: "sky-1", "sky-account", "sky-atlantic", "sky-arts", "sky-
   > :last-child {
     margin-bottom: 0;
   }
+  .c-tile__link &:focus,
+  .c-tile__link &:hover {
+    text-decoration: underline;
+  }
 
 }
 

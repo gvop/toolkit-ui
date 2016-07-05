@@ -2,6 +2,7 @@
 
 ## 1. Bug Fixes
 - [tile] Removed `c-tile__title` responsive size of `3.4vw` which was inconsistent.
+- [tile] Reduced specificity on hover underline styling.
 
 ===
 
