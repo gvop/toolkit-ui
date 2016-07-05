@@ -1,3 +1,10 @@
+# Toolkit UI v0.3.7
+
+## 1. Bug Fixes
+- [tile] Removed `c-tile__title` responsive size of `3.4vw` which was inconsistent.
+
+===
+
 # Toolkit UI v0.3.6
 
 ## 1. Bug Fixes
