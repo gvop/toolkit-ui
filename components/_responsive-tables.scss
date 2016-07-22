@@ -1,0 +1,92 @@
+/* ==========================================================================
+   COMPONENTS / RESPONSIVE TABLES
+   ========================================================================== */
+
+  /**
+   * Tables with more than 2 columns can become problematic on smaller screens. It is important to place tabular information inside table markup for best practice accessibility reasons.
+   * This solution makes all elements of a table display as block elements using css pseudo elements to display a title through reference to a data attribute.
+   * This solution applies until the medium breakpoint, where the table elements revert to their normal display types.
+   * If the table doesn't have column headings, this solution can still be used - omit the <thead></thead> section and the data-column-title attributes on the <tbody> table cells. If it makes sense to display headings above the data on smaller screens, leave the data-column-title attributes in.
+   *
+   * The structure of the table:
+   *
+   *  <table class="c-table-responsive">
+   *    <thead class="c-table-responsive__header">
+   *      <tr class="c-table-responsive__row">
+   *        <td class="c-table-responsive__cell">Heading One</td>
+   *        <td class="c-table-responsive__cell">Heading Two</td>
+   *        <td class="c-table-responsive__cell">Heading Three</td>
+   *      </tr>
+   *    </thead>
+   *    <tbody>
+   *      <tr class="c-table-responsive__row">
+   *        <td class="c-table-responsive__cell" data-column-title="Column Heading 1">Lorem ipsum dolor</td>
+   *        <td class="c-table-responsive__cell" data-column-title="Column Heading 2">Sit amet</td>
+   *        <td class="c-table-responsive__cell" data-column-title="Column Heading 3">Consectetur adipiscing elit</td>
+   *      </tr>
+   *      ...
+   *    </tbody>
+   *  </table>
+   *
+   * See further comments below for more specific information.
+  */
+
+.c-table-responsive {
+  border-collapse: collapse;
+
+  @include mq($until: medium) {
+    display: block;
+
+    tbody {
+      display: block;
+    }
+  }
+}
+
+.c-table-responsive__header {
+  @include mq($until: medium) {
+    @include hide-visually();
+  }
+
+  td {
+    font-weight: bold;
+  }
+}
+
+.c-table-responsive__row {
+  border-bottom: 1px solid color(keyline);
+
+  @include mq($until: medium) {
+    display: block;
+  }
+}
+
+/**
+ * 1. Content property targets the data-column-title attribute on the table cell.
+ * 2. Hide the pseudo element from screen readers - they will read the table column headings.
+*/
+
+.c-table-responsive__cell {
+  padding: $global-spacing-unit-small;
+  text-align: left;
+  vertical-align: top;
+
+  @include mq($until: medium) {
+    display: block;
+
+    &:not(:first-of-type) {
+      padding-left: 0;
+      padding-top: 0;
+    }
+
+    &::before {
+      content: attr(data-column-title); /* [1] */
+      display: block;
+      font-weight: bold;
+
+      @media speech {
+        display: none; /* [2] */
+      }
+    }
+  }
+}
