@@ -73,18 +73,29 @@ $select-animation-speed: $global-animation-speed-fast !default;
   &:focus {
     border-color: color(highlight); /* [10] */
   }
+}
 
-  &:hover,
-  &:active {
-    padding-left: $global-spacing-unit;  /* [11] */
-    padding-right: $global-spacing-unit+$select-icon-width;  /* [11] */
+/**
+ * Mixin to provide a hover style that can be opted into with feature detection or condtional classes - see sample below
+ **/
+@mixin c-select__btn--hover {
+  .c-select__btn {
+    &:hover,
+    &:active {
+      padding-left: $global-spacing-unit;  /* [11] */
+      padding-right: $global-spacing-unit+$select-icon-width;  /* [11] */
 
-    &::after {
-      -ms-transform: translate(0, 0);  /* [12] */
-      transform: translate(0, 0);  /* [12] */
+      &::after {
+        -ms-transform: translate(0, 0);  /* [12] */
+        transform: translate(0, 0);  /* [12] */
+      }
     }
   }
+}
 
+/* Sample feature detection class allowing opt in to hover styling */
+.no-touch {
+  @include c-select__btn--hover;
 }
 
 /**
